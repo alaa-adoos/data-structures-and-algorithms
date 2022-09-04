@@ -14,9 +14,10 @@ You can assume that neither firstName nor lastName will be blank
 const toLastNames = people => {
   // Solution code here...
   let newArr=[];
-  let newName=people.reduce((acc,item,i)=>{
-    acc= newArr.push(item.firstName + ' ' + item.lastName);
-  },[]);
+  people.map((item)=>{
+    let fulName=item.firstName+" "+item.lastName;
+    newArr.push(fulName);
+  })
   return newArr;
 };
 
@@ -29,12 +30,11 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
-  let sum=arr.reduce((acc,item,i)=>{
-    acc+=item;
-    return acc;
-  },0);
-  return sum;
-
+  let newarr=arr.reduce((acc,val)=>{
+acc+=val;
+return acc;
+  },0)
+  return newarr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -51,6 +51,11 @@ Write a function named addPurchases that, given an array of objects as input, us
 
 const addPurchases = (arr) => {
   // Solution code here...
+  let newArr=arr.reduce((acc,val)=>{
+acc+=val.purchasePrice;
+return acc;
+  },0)
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,6 +68,11 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
+  let newArr= arr.reduce((acc,val,i)=>{
+acc+=1;
+return acc;
+  },0)
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,6 +133,11 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
+  let newArr=arr.reduce((acc,v,i)=>{
+acc.push(v.name);
+return acc;
+  },[])
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,7 +149,16 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 ------------------------------------------------------------------------------------------------ */
 
 const reversedString = (str) => {
-  // Solution code here...
+  let split=str.split("");
+  let newArr=[];
+  for(let i=split.length-1;i>=0;i--){
+newArr.push(split[i]);
+  }
+  let output=newArr.reduce((acc,val)=>{
+acc+=val;
+return acc;
+  },"")
+  return output;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -187,7 +211,7 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  // Solution code here...
+ 
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -334,7 +358,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the total number of children', () => {
     expect(countNumberOfChildren(characters)).toStrictEqual(14);
   });
