@@ -178,6 +178,25 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  let row1=board[0]; 
+  let col1= [board[0][0],board[1][0],board[2][0]] ;
+  let row2=board[1];
+  let col2=[board[0][1],board[1][1],board[2][1]];
+  let row3=board[2];
+  let col3=[board[0][2],board[1][2],board[2][2]];
+  let diag1=[board[0][0],board[1][1],board[2][2]];
+  let diag2=[board[0][2],board[1][1],board[2][0]];
+  let Total=[row1,row2,row3,col1,col2,col3,diag1,diag2]
+  
+ for(let i=0;i<Total.length;i++){
+  if (Total[i].every(v=>v=="O")){
+  return true
+  }else if (Total[i].every(v=>v=="X")){
+  return true
+  }
+  }
+
+return false
 };
 
 /* ------------------------------------------------------------------------------------------------
